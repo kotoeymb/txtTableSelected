@@ -15,7 +15,7 @@
 @synthesize btn_deliver_address;
 @synthesize btn_edit;
 @synthesize btn_delete;
-
+@synthesize radiobutton;
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

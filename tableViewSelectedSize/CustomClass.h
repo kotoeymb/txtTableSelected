@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *deliver_address;
 @property (nonatomic, strong) NSString *phone;
 @property (nonatomic, strong) UIImage *imageV;
-// @property (nonatomic, strong) UIImage *imageV1;
+@property (nonatomic, strong) UIImage *imageV1;
 
 @property (nonatomic, strong) UIButton *deliverbtn;
 @property (nonatomic, strong) UIButton *edit;
