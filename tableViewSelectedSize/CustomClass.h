@@ -20,4 +20,6 @@
 @property (nonatomic, strong) UIButton *edit;
 @property (nonatomic, strong) UIButton *del;
 
+ // -(id)initWithName:(NSString *)name address:(NSString *)address Phone:(NSString *)phone;
+
 @end

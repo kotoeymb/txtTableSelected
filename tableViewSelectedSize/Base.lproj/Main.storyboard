@@ -21,8 +21,11 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sKM-7l-0lb">
                                 <rect key="frame" x="20" y="562" width="30" height="30"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="btn_add:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dtn-Zy-tKd"/>
+                                </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="181" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-1W-eP9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="181" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RR6-1W-eP9">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="550"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -48,6 +51,9 @@
                                                         <constraint firstAttribute="width" constant="90" id="cnl-Wh-V48"/>
                                                     </constraints>
                                                     <state key="normal" title="Edit"/>
+                                                    <connections>
+                                                        <action selector="edit_btn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SlZ-Ma-LFC"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Io3-CO-6cK" userLabel="lbl_view">
                                                     <rect key="frame" x="44" y="7" width="471" height="85"/>
@@ -101,6 +107,9 @@
                                                         <constraint firstAttribute="height" constant="30" id="Qy0-CT-yr7"/>
                                                     </constraints>
                                                     <state key="normal" title="Delete"/>
+                                                    <connections>
+                                                        <action selector="del_btn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kzk-Ax-4v7"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -156,6 +165,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="add_btn" destination="sKM-7l-0lb" id="toT-qI-OkK"/>
                         <outlet property="table_view" destination="RR6-1W-eP9" id="Nho-8N-ACP"/>
                     </connections>
                 </viewController>

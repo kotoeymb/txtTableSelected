@@ -17,5 +17,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *btn_edit;
 @property (weak, nonatomic) IBOutlet UIButton *btn_delete;
 @property (weak, nonatomic) IBOutlet UIImageView *img2;
+- (IBAction)del_btn:(id)sender;
+
+- (IBAction)edit_btn:(id)sender;
 
 @end

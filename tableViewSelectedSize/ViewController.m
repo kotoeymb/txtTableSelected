@@ -12,10 +12,13 @@
 
 @interface ViewController () < UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *table_view;
-@property (nonatomic, strong) NSArray *listOfElements;
+// @property (nonatomic, strong) NSArray *listOfElements;
+@property (nonatomic, strong) NSMutableArray *listOfElements;
 @property (nonatomic, readonly) UINib *intelligentCellNib;
 @property (nonatomic, retain) NSIndexPath *expandedCellIndexPath;
 @property (nonatomic) CGFloat expandedCellHeight;
+@property (weak, nonatomic) IBOutlet UIButton *add_btn;
+- (IBAction)btn_add:(id)sender;
 @end
 
 @implementation ViewController
@@ -45,7 +48,7 @@ BOOL *imgSelected;
     // Dispose of any resources that can be recreated.
 }
 
-
+/*
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:NO];
@@ -66,15 +69,16 @@ BOOL *imgSelected;
 {
     [super viewDidDisappear:NO];
 }
+*/
  
 
-
+/*
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
+*/
 
 -(void) loadTableView{
     
@@ -88,34 +92,6 @@ BOOL *imgSelected;
     
     self.table_view.contentInset = UIEdgeInsetsMake(20, 0, 0, 0) ;// Status bar inset
     
-}
--(void) loadDataTableView{
-    
-    CustomClass *cus1 = [CustomClass new];
-   //  TableViewCell *cell = [table_view cellForRowAtIndexPath:path];
-    
-       cus1.name = @" John Doe";
-    cus1.deliver_address = @"459D #6A, New University Avenue Rd,.. ";
-    cus1.phone = @"Phone 12345667 ";
-    cus1.imageV = [UIImage imageNamed:@"Radio_Button-128.png"];
-    cus1.imageV1= [UIImage imageNamed:@"Radiobutton-choice.png"];
-    
-    cus1.name = @" John Doe";
-    cus1.deliver_address = @"459D #6A, New University Avenue Rd,.. ";
-    cus1.phone = @"Phone 12345667 ";
-    cus1.imageV = [UIImage imageNamed:@"Radio_Button-128.png"];
-    cus1.imageV1= [UIImage imageNamed:@"Radiobutton-choice.png"];
-
-    
-    
- //     cus1.imageV1= [UIImage imageNamed:@"Radiobutton-choice.png"];
-   //    cus1.deliverbtn = [UIColor]
-    
-    
-    
- 
-    _listOfElements = [[NSArray alloc] initWithObjects:cus1,cus1, nil];
-    [_table_view reloadData];
 }
 
 #pragma TableView Control
@@ -157,6 +133,7 @@ BOOL *imgSelected;
         cell.lbl_name.text = [[_listOfElements objectAtIndex:indexPath.row] name];
         cell.lbl_address.text = [[_listOfElements objectAtIndex:indexPath.row] deliver_address];
         cell.lbl_phone.text = [[_listOfElements objectAtIndex:indexPath.row] phone];
+    
         if ([self.expandedCellIndexPath isEqual:indexPath]) {
                 cell.radiobutton.image = [UIImage imageNamed:@"Radiobutton-choice.png"];
 
@@ -246,8 +223,9 @@ BOOL *imgSelected;
 //        NSLog(@"Normal Button");
 //        
 //    }
-      //   [tableView deselectRowAtIndexPath:indexPath animated:NO];
-       //  [tableView reloadData];
+    
+         [tableView deselectRowAtIndexPath:indexPath animated:NO];
+         [tableView reloadData];
 }
 
 
@@ -263,12 +241,6 @@ BOOL *imgSelected;
                 self.expandedCellIndexPath = indexPath;
         //get the pointer to the cell which was tapped
         TableViewCell *cell = (TableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-        //define the maximum size for description label as
-        //CGSize with width of description label and infinite height
-      
-        
-        //make cell with this indexpath  expanded
-
         
         CGSize maximumSize = CGSizeMake(cell.btn_deliver_address.bounds.size.width, NSIntegerMax);
         //this method returns the expected size of the description label with respect to the amount
@@ -278,56 +250,80 @@ BOOL *imgSelected;
         //this defines the height of expanded cell adding the delta between current
         //label height and expected height to  cell content view height.
         self.expandedCellHeight =  cell.contentView.bounds.size.height + cell.lbl_phone.bounds.size.height + expectedSize.height+100;
-        //  [cell setSelected:YES animated:NO];
+      //   [cell setSelected:YES animated:YES];
         
     }
-    
-  //   [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //  [tableView reloadData];
-
-    
-    
-    //this asks tableview to redraw cells
-    //actually it invokes reload of cell just if it's height was changed
-    //and animates the resize of the cell
-      //   [tableView deselectRowAtIndexPath:[self.table_view indexPathForSelectedRow] animated:NO];
+ ///       [tableView deselectRowAtIndexPath:indexPath animated:NO];
+        //this asks tableview to redraw cells
+        //actually it invokes reload of cell just if it's height was changed
+        //and animates the resize of the cell
+        //   [tableView deselectRowAtIndexPath:[self.table_view indexPathForSelectedRow] animated:NO];
    
     
-        [self.table_view beginUpdates];
-        [tableView reloadData];
-//    //     [self.table_view reloadRowsAtIndexPaths:[self.table_view indexPathForSelectedRow] withRowAnimation:UITableViewRowAnimationNone];
-        [self.table_view endUpdates];
-}
- -(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-
-}
--(void)tableView:(UITableView *)tableView didUnHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
-
+      // [self.table_view beginUpdates];
+          [tableView reloadData];
+      //  [self.table_view endUpdates];
+      //  [self animate];
 }
 
-//-(UIImage*)imageWithColor:(UIColor*)color{
-//    TableViewCell * cell;
-//
-//    // imgSelected = YES;
-//    if(cell.selected ){
-//    [cell.radiobutton setImage:[UIImage imageNamed:@"Radiobutton-choice.png"]];
-//    }
-//    else{
-//        [cell.radiobutton setImage:[UIImage imageNamed:@"Radio_Button-128.png"]];
-//    }
-//    
-//    return cell.radiobutton.image;
-//}
 
-#pragma mark -
-#pragma mark lazy getters
-//- (UINib *)intelligentCellNib
+#pragma mark - Load TableView
+
+
+-(void) loadDataTableView{
+    
+    CustomClass *cus1 = [CustomClass new];
+    //  TableViewCell *cell = [table_view cellForRowAtIndexPath:path];
+    
+    cus1.name = @" John Doe";
+    cus1.deliver_address = @"459D #6A, New University Avenue Rd,.. ";
+    cus1.phone = @"Phone 12345667 ";
+    cus1.imageV = [UIImage imageNamed:@"Radio_Button-128.png"];
+    //  cus1.imageV1= [UIImage imageNamed:@"Radiobutton-choice.png"];
+    //  NSArray *list = [[NSArray alloc] initWithObjects:cus1,cus1,nil];
+    //
+    //  _listOfElements = [NSArray arrayWithObjects:additem,nil];
+    //
+    _listOfElements = [[NSMutableArray alloc] init];
+    
+    _listOfElements = [[NSMutableArray alloc] initWithObjects:cus1,cus1, nil];
+    [_table_view reloadData];
+}
+
+- (IBAction)btn_add:(id)sender {
+    
+    [self loadTableView];
+    CustomClass *cus2 = [CustomClass new];
+    //  TableViewCell *cell = [table_view cellForRowAtIndexPth:path];
+    cus2.name = @" John Doe";
+    cus2.deliver_address = @"459D #6A, New University Avenue Rd,.. ";
+    cus2.phone = @"Phone 12345667 ";
+    cus2.imageV = [UIImage imageNamed:@"Radio_Button-128.png"];
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    [temp addObject:cus2];
+    [temp addObjectsFromArray:_listOfElements];
+    
+  //   temp = [[NSArray alloc] initWithObjects:cus2, nil];
+     _listOfElements = temp;
+    
+    [_table_view reloadData];
+    
+    
+}
+//- (void)animate
 //{
-//    if (!intelligentCellNib_) {
-//        intelligentCellNib_ = [[UINib nibWithNibName:@"TableViewCell" bundle:[NSBundle mainBundle]] retain];
-//    }
-//    
-//    return intelligentCellNib_;
+//    [[self.table_view visibleCells] enumerateObjectsUsingBlock:^(UITableViewCell *cell, NSUInteger idx, BOOL *stop) {
+//        [cell setFrame:CGRectMake(0, cell.frame.origin.x, cell.frame.size.width, cell.frame.size.height)];
+//        [UIView animateWithDuration:0.2 animations:^{
+//            [cell setFrame:CGRectMake(320, cell.frame.origin.x, cell.frame.size.width, cell.frame.size.height)];
+//        }];
+//    }];
 //}
 
+- (IBAction)del_btn:(id)sender {
+    
+}
+
+- (IBAction)edit_btn:(id)sender {
+}
 @end
